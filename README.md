@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zero-Width Steganography
 
-## Getting Started
+A modern web application for encoding and decoding secret messages using invisible Unicode characters. Hide confidential text within normal-looking cover text - perfect for covert communication!
 
-First, run the development server:
+## 🎯 What is This?
 
+**Steganography** is the art of hiding messages in plain sight. This app uses Unicode's invisible characters to embed binary-encoded secrets into ordinary text. To the naked eye, the text looks completely normal - but the hidden message is preserved and can be decoded later.
+
+### The Magic ✨
+- **Secret Message** → Convert to binary → Map to invisible Unicode characters → **Inject into cover text**
+- **Encoded Text** (looks normal) → **Extract invisible characters** → Convert from binary → **Reveal secret**
+
+## 🚀 Quick Start
+
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run Development Server
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build for Production
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 📖 How to Use
 
-To learn more about Next.js, take a look at the following resources:
+### Encoding a Message
+1. Go to `/encoder`
+2. Enter your **Secret Message** (e.g., "Hello secret world!")
+3. Enter **Cover Text** (e.g., "Hello world")
+4. Click **Encode Message**
+5. Copy the output (invisible characters are embedded)
+6. Share the encoded text - it looks like normal text!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Decoding a Message
+1. Go to `/decoder`
+2. Paste the **Encoded Text** (with hidden message)
+3. Click **Decode Message**
+4. Your secret is revealed! 🎉
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 Technical Details
 
-## Deploy on Vercel
+### Technology Stack
+- **Framework**: Next.js 16.2.6 with App Router
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **Runtime**: React 19.2.4
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For detailed architecture and algorithm explanation, see [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
+```
+app/
+├── page.tsx              # Home page with navigation
+├── encoder/page.tsx      # Encoder interface
+├── decoder/page.tsx      # Decoder interface
+└── layout.tsx            # Root layout
+
+lib/
+├── steganography.ts      # Core encoding/decoding logic
+└── steganography.test.ts # Test reference file
+
+public/                   # Static assets
+```
+
+## 🧪 Example
+
+**Encoding:**
+- Secret: `"Test"`
+- Cover: `"Hello world"`
+- Result: `"Hello world"` (with 32 invisible characters embedded)
+
+**Decoding:**
+- Input: `"Hello world"` (from above)
+- Result: `"Test"` ✓
+
+## 🔐 Security Notes
+
+⚠️ **Important**: This is **steganography** (hiding), not **cryptography** (securing).
+- Messages are embedded but not encrypted
+- For sensitive data, combine with encryption for maximum security
+- This is a proof-of-concept demonstration
+- Invisible characters are preserved through copy-paste operations
+
+## 📚 Documentation
+
+- [ARCHITECTURE.md](./docs/ARCHITECTURE.md) - Technical details, algorithm explanation, and performance notes
+
+## 🛠️ Development
+
+### Available Scripts
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm start        # Start production server
+npm run lint     # Run ESLint
+```
+
+### File Structure
+- `app/` - Next.js App Router pages and layouts
+- `lib/` - Utility functions and core logic
+- `public/` - Static assets
+- `tsconfig.json` - TypeScript configuration
+- `tailwind.config.ts` - Tailwind CSS configuration
+- `next.config.ts` - Next.js configuration
+
+## 🚀 Deployment
+
+This app is ready to deploy to any platform that supports Next.js:
+- **Vercel** (recommended) - [Deploy now](https://vercel.com/new)
+- **Netlify**
+- **Docker** containers
+- **Traditional servers** (Node.js)
+
+## 📝 License
+
+MIT - Feel free to use and modify!
